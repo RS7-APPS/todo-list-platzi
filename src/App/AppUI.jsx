@@ -11,13 +11,17 @@ import { TodosLoading } from '../TodosLoading'
 import { TodosError } from '../TodosError'
 import { EmptyTodos } from '../EmptyTodos'
 
+import { Modal } from '../Modal'
+
 function AppUI() {
     const { 
         loading, 
         error, 
         searchedTodos, 
         completeTodo, 
-        deleteTodo
+        deleteTodo,
+        openModal,
+        setOpenModal
     } = useContext(TodoContext)
     
     return (
@@ -49,7 +53,14 @@ function AppUI() {
                         )
                     }        
                 </TodoList>                   
-            <CreateTodoButton /> 
+            <CreateTodoButton setOpenModal={setOpenModal}/> 
+            {
+                openModal && (
+                    <Modal>
+                        La funcionalidad de agregar TODO
+                    </Modal>
+                )
+            }            
         </>
     )
 }
